@@ -42,6 +42,11 @@ public class HiveMetastoreReport {
     Configuration conf = new Configuration();
     final HiveMetastoreReport metastoreReport = new HiveMetastoreReport();
     if ("kerberos".equalsIgnoreCase(conf.get("hadoop.security.authentication"))) {
+      if (args.length < 2) {
+        System.err.println("ERROR: Cluster is configured for Kerberos but no principal and keytab provided. " +
+            "Expected args: " + HiveMetastoreReport.class.getName() + " [principal] [keytab]");
+        System.exit(1);
+      }
       String principal = args[0];
       String keytab = args[1];
       UserGroupInformation ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI(principal, keytab);
