@@ -1,0 +1,7 @@
+.idea
+target
+*.iml
+core-site.xml
+hive-site.xml
+*.keytab
+dependency-reduced-pom.xml
